@@ -1,0 +1,346 @@
+/* Universal styles */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Raleway", sans-serif;
+    min-height: 100%;
+    width: 100%;
+    background-image: url('images/Akatsuki.(NARUTO).full.2663111.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 0;
+    padding: 0;
+}
+/* Styling */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* Styling the nav */
+nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    padding: 20px 50px;
+    background-color: rgba(0, 0, 0, 0.75);
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2rem;
+    margin-left: auto;
+    position: relative;
+    z-index: 2;
+    padding-right: 0.5rem;
+}
+
+nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+    transition: opacity 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.8;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.container h1 {
+    font-family: "Google Sans", "Raleway", sans-serif;
+    font-size: 3rem;
+    color: red;
+    text-align: center;
+    margin: 2rem 0;
+    text-shadow: 2px 4px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 2;
+}
+
+.container-card {
+    border: 5px solid red;
+    width: auto;
+    height: auto;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+    color: #fff;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.About h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.about-card {
+    border: 2px solid rgba(255, 0, 0, 0.6);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    margin: 20px;
+}
+
+.card-images ul {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.card-images li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    font-weight: 600;
+    text-shadow: 1px 1px 2px black;
+    transition: transform 0.2s ease;
+    position: relative;
+}
+
+.card-images img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid #ff3333;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+    margin-bottom: 0.75rem;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.card-images img:hover {
+    transform: scale(1.05);
+    border-color: #ff6666;
+}
+
+.card-images li:hover {
+    transform: translateY(-5px);
+}
+
+/* Delete & Edit buttons */
+.delete-member, .edit-member {
+    position: absolute;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+.delete-member {
+    top: 5px;
+    right: 5px;
+    background: rgba(255,0,0,0.8);
+}
+.delete-member:hover {
+    background: red;
+    transform: scale(1.1);
+}
+.edit-member {
+    top: 5px;
+    right: 40px;
+    background: rgba(0,0,0,0.8);
+}
+.edit-member:hover {
+    background: #ff9900;
+    transform: scale(1.1);
+}
+
+/* Add Member Form */
+.add-member-section {
+    margin: 40px 20px;
+    padding: 20px;
+    background-image: url(images/akatsuki\ bg.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    border-radius: 16px;
+    border: 2px solid rgba(255, 0, 0, 0.6);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+.add-member-section h3 {
+    font-size: 1.8rem;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+}
+.add-member-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+.add-member-form input,
+.add-member-form textarea {
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+.add-member-form button {
+    padding: 12px;
+    background-color: #ff3333;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-size: 1rem;
+}
+.add-member-form button:hover {
+    background-color: #cc0000;
+}
+
+/* Quotes Section */
+.quotes {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1.5rem;
+    padding: 20px;
+    background-image: url('images/bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    margin: 20px;
+}
+
+.quotes-card {
+    flex: 1;
+    min-width: 250px;
+    border: 2px solid rgba(255, 0, 0, 0.6);
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.6);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.quotes-card video {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.quotes-card p {
+    margin-top: 12px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+}
+
+footer form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+}
+
+footer input,
+footer button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+footer input {
+    flex: 1;
+    min-width: 180px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #000;
+}
+
+footer input::placeholder {
+    color: #444;
+}
+
+footer button {
+    background-color: #ff3333;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s;
+    padding: 10px 25px;
+}
+
+footer button:hover {
+    background-color: #cc0000;
+}
