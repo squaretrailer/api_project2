@@ -3,8 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Animechan</title>
+    <title>Animechan – Akatsuki</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts & Font Awesome for social icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <header>
@@ -18,6 +21,7 @@
     </header>
 
     <main>
+        <!-- Hero Section -->
         <section class="container">
             <h1>Akatsuki</h1>
             <div class="container-card">
@@ -28,59 +32,83 @@
             </div>
         </section>
 
-        <section class="About">
-            <h3>Members of the AKATSUKI:</h3>
+        <!-- Members Section -->
+        <section class="about">
+            <h2>Members of the AKATSUKI:</h2>
             <div class="about-card">
                 <div class="card-images">
-                    <ul>
-                        <!-- Static list will be replaced by dynamic JS -->
-                        <li><img src="images/pain.jpg" alt="Pain">Pain</li>
-                        <li><img src="images/itachi uchiha.jpg" alt="Itachi Uchiha">Itachi Uchiha</li>
-                        <li><img src="images/Kisame.webp" alt="Kisame Hoshigaki">Kisame Hoshigaki</li>
-                        <li><img src="images/Konan.webp" alt="Konan">Konan</li>
-                        <li><img src="images/sasori.jpg" alt="Sasori">Sasori</li>
-                        <li><img src="images/orochimaru.jpg" alt="Orochimaru">Orochimaru</li>
-                        <li><img src="images/Diedara.jpg" alt="Deidara">Deidara</li>
-                        <li><img src="images/kakuzu.jpg" alt="Kakuzu">Kakuzu</li>
-                        <li><img src="images/hidan.png" alt="Hidan">Hidan</li>
-                        <li><img src="images/zetsu.webp" alt="Zetsu">Zetsu</li>
-                        <li><img src="images/obito uchiha.jpg" alt="Obito Uchiha">Obito Uchiha</li>
-                        <li><img src="images/madara uchiha.jpg" alt="Madara Uchiha">Madara Uchiha</li>
+                    <ul class="member-list">
+                        <!-- Members injected by JavaScript -->
                     </ul>
                 </div>
             </div>
         </section>
 
+        <!-- Add Member Form (injected by JS) -->
+        <div id="addMemberContainer"></div>
+
+        <!-- Quotes / Videos Section -->
         <section class="quotes">
             <div class="quotes-card">
                 <video controls>
-                    <source src="video/Madara Uchiha Speech MV.mp4" type="video/mp4">
+                    <source src="video/Madara%20Uchiha%20Speech%20MV.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
                 <p>Madara Uchiha's quote</p>
             </div>
             <div class="quotes-card">
                 <video controls>
-                    <source src="video/What is Reality. - Itachi Uchiha.mp4" type="video/mp4">
+                    <source src="video/What%20is%20Reality.%20-%20Itachi%20Uchiha.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
                 </video>
                 <p>Itachi Uchiha's quote</p>
             </div>
             <div class="quotes-card">
                 <video controls>
-                    <source src="video/Pain's Words -- Justice.mp4" type="video/mp4">
+                    <source src="video/Pain's%20Words%20--%20Justice.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
                 </video>
                 <p>Pain's quote</p>
             </div>
         </section>
+
+        <!-- External Anime Search (Jikan API) -->
+        <section class="external-search">
+            <h2>🔍 Search Anime from MyAnimeList</h2>
+            <div class="search-area">
+                <input type="text" id="externalSearchInput" placeholder="e.g., Naruto, Attack on Titan">
+                <button id="externalSearchBtn">Search</button>
+            </div>
+            <div id="externalSearchResults" class="search-results-grid"></div>
+        </section>
     </main>
 
+    <!-- New Footer Structure matching CSS -->
     <footer>
-        <form method="post" action="#">
-            <input type="text" name="name" placeholder="Enter your name:" required>
-            <input type="email" name="email" placeholder="Enter your email:" required>
-            <input type="tel" name="phone" placeholder="Enter your phone number:">
-            <button type="submit">Subscribe</button>
-        </form>
+        <div class="footer-container">
+            <div class="footer-form">
+                <h3>Subscribe to our newsletter</h3>
+                <form id="newsletterForm">
+                    <input type="text" name="name" placeholder="Enter your name:" required>
+                    <input type="email" name="email" placeholder="Enter your email:" required>
+                    <input type="tel" name="phone" placeholder="Enter your phone number:">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+            <div class="footer-right">
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="anime-message">
+                    <p>✨ "Art is an explosion!" – Deidara</p>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2025 Akatsuki Project. All rights reserved.</p>
+        <button id="backToTop" title="Go to top">⬆ Back to Top</button>
     </footer>
 
     <script src="main.js"></script>

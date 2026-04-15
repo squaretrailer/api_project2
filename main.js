@@ -1,7 +1,7 @@
 // ==================== DEFAULT DATA ====================
 const defaultMembers = [
     { id: 1, name: "Pain", image: "images/pain.jpg", description: "Leader of Akatsuki, wielder of the Rinnegan." },
-    { id: 2, name: "Itachi Uchiha", image: "images/itachi uchiha.jpg", description: "Former ANBU captain, sacrificed everything for peace." },
+    { id: 2, name: "Itachi Uchiha", image: "images/itachi%20uchiha.jpg", description: "Former ANBU captain, sacrificed everything for peace." },
     { id: 3, name: "Kisame Hoshigaki", image: "images/Kisame.webp", description: "The tailless tailed beast, wielder of Samehada." },
     { id: 4, name: "Konan", image: "images/Konan.webp", description: "The angel of Amegakure, master of origami." },
     { id: 5, name: "Sasori", image: "images/sasori.jpg", description: "Puppet master who turned himself into a puppet." },
@@ -10,8 +10,8 @@ const defaultMembers = [
     { id: 8, name: "Kakuzu", image: "images/kakuzu.jpg", description: "Greedy treasurer with five hearts." },
     { id: 9, name: "Hidan", image: "images/hidan.png", description: "Immortal cultist of Jashin." },
     { id: 10, name: "Zetsu", image: "images/zetsu.webp", description: "Spore-like spy, black and white halves." },
-    { id: 11, name: "Obito Uchiha", image: "images/obito uchiha.jpg", description: "The masked man behind the Fourth Great Ninja War." },
-    { id: 12, name: "Madara Uchiha", image: "images/madara uchiha.jpg", description: "Legendary ghost of the Uchiha, founder of Akatsuki's roots." }
+    { id: 11, name: "Obito Uchiha", image: "images/obito%20uchiha.jpg", description: "The masked man behind the Fourth Great Ninja War." },
+    { id: 12, name: "Madara Uchiha", image: "images/madara%20uchiha.jpg", description: "Legendary ghost of the Uchiha, founder of Akatsuki's roots." }
 ];
 
 const defaultQuotes = [
@@ -52,17 +52,13 @@ function saveQuotes(quotes) {
     localStorage.setItem("akatsuki_quotes", JSON.stringify(quotes));
 }
 
-// ==================== REST API (HTTP VERBS) ====================
+// ==================== REST API ====================
 const AkatsukiAPI = {
-    // ---------- MEMBERS ----------
-    // GET all members
     getMembers: () => Promise.resolve(getMembers()),
-    // GET member by id
     getMember: (id) => {
         const member = getMembers().find(m => m.id === id);
         return member ? Promise.resolve(member) : Promise.reject({ status: 404, message: "Member not found" });
     },
-    // POST new member
     postMember: (name, image, description) => {
         const members = getMembers();
         const newId = members.length ? Math.max(...members.map(m => m.id)) + 1 : 13;
@@ -71,7 +67,6 @@ const AkatsukiAPI = {
         saveMembers(members);
         return Promise.resolve(newMember);
     },
-    // PATCH member (partial update)
     patchMember: (id, updates) => {
         const members = getMembers();
         const index = members.findIndex(m => m.id === id);
@@ -80,7 +75,6 @@ const AkatsukiAPI = {
         saveMembers(members);
         return Promise.resolve(members[index]);
     },
-    // DELETE member
     deleteMember: (id) => {
         let members = getMembers();
         const exists = members.some(m => m.id === id);
@@ -89,8 +83,6 @@ const AkatsukiAPI = {
         saveMembers(members);
         return Promise.resolve({ success: true, id });
     },
-
-    // ---------- QUOTES ----------
     getQuotes: () => Promise.resolve(getQuotes()),
     getQuotesByMember: (memberId) => {
         const filtered = getQuotes().filter(q => q.memberId === memberId);
@@ -124,9 +116,8 @@ function renderMemberList() {
         container.innerHTML = '';
         members.forEach(member => {
             const li = document.createElement('li');
-            li.style.position = 'relative';
             li.innerHTML = `
-                <img src="${member.image}" alt="${member.name}">
+                <img src="${member.image}" alt="${member.name}" onerror="this.src='images/fallback.jpg'">
                 <span>${member.name}</span>
                 <button class="delete-member" data-id="${member.id}" title="Delete member">✖</button>
                 <button class="edit-member" data-id="${member.id}" title="Edit member">✏️</button>
@@ -166,7 +157,7 @@ function renderMemberList() {
     });
 }
 
-// ==================== ADD MEMBER FORM ====================
+// ==================== ADD MEMBER FORM (injected) ====================
 const addFormHtml = `
     <div class="add-member-section">
         <h3>Add a New Akatsuki Member</h3>
@@ -179,9 +170,12 @@ const addFormHtml = `
     </div>
 `;
 
-const aboutSection = document.querySelector('.About');
-if (aboutSection && !document.querySelector('.add-member-section')) {
+const aboutSection = document.querySelector('.about');
+if (aboutSection) {
     aboutSection.insertAdjacentHTML('afterend', addFormHtml);
+} else {
+    const container = document.getElementById('addMemberContainer');
+    if (container) container.innerHTML = addFormHtml;
 }
 
 document.addEventListener('submit', (e) => {
@@ -203,6 +197,64 @@ document.addEventListener('submit', (e) => {
             .catch(err => alert(err.message || 'Error'));
     }
 });
+
+// ==================== EXTERNAL SEARCH (Jikan API) ====================
+const searchBtn = document.getElementById('externalSearchBtn');
+const searchInput = document.getElementById('externalSearchInput');
+const resultsDiv = document.getElementById('externalSearchResults');
+
+async function searchAnime(query) {
+    if (!query.trim()) {
+        resultsDiv.innerHTML = '<p>Please enter an anime name.</p>';
+        return;
+    }
+    resultsDiv.innerHTML = '<p>Searching...</p>';
+    try {
+        const response = await fetch(`https://api.jikan.moe/v4/anime?q=${encodeURIComponent(query)}&limit=12`);
+        if (!response.ok) throw new Error('API error');
+        const data = await response.json();
+        const animes = data.data;
+        if (!animes.length) {
+            resultsDiv.innerHTML = '<p>No results found.</p>';
+            return;
+        }
+        resultsDiv.innerHTML = animes.map(anime => `
+            <div class="anime-card">
+                <img src="${anime.images.jpg.image_url}" alt="${anime.title}">
+                <h4>${anime.title}</h4>
+                <p>⭐ ${anime.score || 'N/A'}</p>
+            </div>
+        `).join('');
+    } catch (error) {
+        resultsDiv.innerHTML = '<p>Error fetching data. Try again later.</p>';
+        console.error(error);
+    }
+}
+
+if (searchBtn) {
+    searchBtn.addEventListener('click', () => searchAnime(searchInput.value));
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') searchAnime(searchInput.value);
+    });
+}
+
+// ==================== NEWSLETTER FORM (footer) ====================
+const newsletterForm = document.getElementById('newsletterForm');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for subscribing! (Demo)');
+        newsletterForm.reset();
+    });
+}
+
+// ==================== BACK TO TOP BUTTON ====================
+const backToTopBtn = document.getElementById('backToTop');
+if (backToTopBtn) {
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+}
 
 // ==================== INITIAL RENDER ====================
 renderMemberList();

@@ -1,4 +1,4 @@
-/* Universal styles */
+/* ========== RESET & BASE ========== */
 *,
 *::before,
 *::after {
@@ -9,47 +9,39 @@
 
 html {
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 body {
     font-family: "Raleway", sans-serif;
     min-height: 100%;
-    width: 100%;
     background-image: url('images/Akatsuki.(NARUTO).full.2663111.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 0;
-    padding: 0;
+    background-attachment: fixed;
+    color: #fff;
 }
-/* Styling */
+
+/* ========== HEADER & NAV ========== */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-/* Styling the nav */
+
 nav {
     display: flex;
     width: 100%;
-    height: 100%;
     padding: 20px 50px;
     background-color: rgba(0, 0, 0, 0.75);
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
-    position: relative;
 }
 
 nav ul {
     list-style: none;
     display: flex;
     gap: 2rem;
-    margin-left: auto;
-    position: relative;
-    z-index: 2;
-    padding-right: 0.5rem;
 }
 
 nav a {
@@ -64,50 +56,40 @@ nav a:hover {
     opacity: 0.8;
 }
 
-.container {
-    max-width: 1200px;
+/* ========== MAIN CONTAINER ========== */
+main {
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px;
 }
 
 .container h1 {
-    font-family: "Google Sans", "Raleway", sans-serif;
+    font-family: "Raleway", sans-serif;
     font-size: 3rem;
     color: red;
     text-align: center;
     margin: 2rem 0;
-    text-shadow: 2px 4px rgba(0, 0, 0, 0.5);
-    position: relative;
-    z-index: 2;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .container-card {
     border: 5px solid red;
-    width: auto;
-    height: auto;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin: 20px;
+    margin-bottom: 40px;
 }
 
 .card-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
     text-align: center;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin: 20px;
     color: #fff;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
-.About h3 {
+/* ========== MEMBERS SECTION ========== */
+.about h2 {
     font-size: 1.8rem;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
@@ -120,29 +102,25 @@ nav a:hover {
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    margin: 20px;
+    margin-bottom: 40px;
 }
 
 .card-images ul {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 1.5rem;
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .card-images li {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     color: #fff;
     font-weight: 600;
-    text-shadow: 1px 1px 2px black;
-    transition: transform 0.2s ease;
-    position: relative;
+    transition: transform 0.2s;
 }
 
 .card-images img {
@@ -161,12 +139,9 @@ nav a:hover {
     border-color: #ff6666;
 }
 
-.card-images li:hover {
-    transform: translateY(-5px);
-}
-
 /* Delete & Edit buttons */
-.delete-member, .edit-member {
+.delete-member,
+.edit-member {
     position: absolute;
     background: rgba(0,0,0,0.7);
     color: white;
@@ -200,26 +175,27 @@ nav a:hover {
     transform: scale(1.1);
 }
 
-/* Add Member Form */
+/* ========== ADD MEMBER FORM ========== */
+#addMemberContainer {
+    margin: 40px 0;
+}
+
 .add-member-section {
-    margin: 40px 20px;
     padding: 20px;
-    background-image: url(images/akatsuki\ bg.jpg);
+    background-image: url('images/akatsuki%20bg.jpg'); /* fixed space */
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
     border-radius: 16px;
     border: 2px solid rgba(255, 0, 0, 0.6);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
 }
+
 .add-member-section h3 {
     font-size: 1.8rem;
-    color: #fff;
     text-align: center;
     margin-bottom: 1.5rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
 }
+
 .add-member-form {
     display: flex;
     flex-direction: column;
@@ -227,6 +203,7 @@ nav a:hover {
     max-width: 500px;
     margin: 0 auto;
 }
+
 .add-member-form input,
 .add-member-form textarea {
     padding: 12px;
@@ -236,6 +213,7 @@ nav a:hover {
     font-size: 1rem;
     background-color: rgba(255, 255, 255, 0.9);
 }
+
 .add-member-form button {
     padding: 12px;
     background-color: #ff3333;
@@ -245,102 +223,268 @@ nav a:hover {
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.3s;
-    font-size: 1rem;
 }
+
 .add-member-form button:hover {
     background-color: #cc0000;
 }
 
-/* Quotes Section */
+/* ========== QUOTES / VIDEOS ========== */
 .quotes {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    align-items: stretch;
     gap: 1.5rem;
     padding: 20px;
     background-image: url('images/bg2.jpg');
-    background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    margin: 20px;
+    border-radius: 16px;
+    margin: 40px 0;
 }
 
 .quotes-card {
     flex: 1;
     min-width: 250px;
+    max-width: 320px;
     border: 2px solid rgba(255, 0, 0, 0.6);
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 16px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     text-align: center;
 }
 
 .quotes-card video {
     width: 100%;
-    max-width: 400px;
     border-radius: 12px;
-    border: 1px solid rgba(255,255,255,0.3);
 }
 
 .quotes-card p {
     margin-top: 12px;
     font-weight: bold;
-    font-size: 1rem;
 }
 
-/* Footer */
-footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    margin: 20px;
+/* ========== EXTERNAL SEARCH ========== */
+.external-search {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 16px;
+    padding: 25px;
+    margin: 40px 0;
+    border: 2px solid rgba(255, 0, 0, 0.6);
 }
 
-footer form {
+.external-search h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.search-area {
     display: flex;
+    gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1rem;
-    width: 100%;
-    max-width: 600px;
+    margin-bottom: 20px;
 }
 
-footer input,
-footer button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: inherit;
-}
-
-footer input {
+.search-area input {
     flex: 1;
-    min-width: 180px;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #000;
+    min-width: 200px;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1rem;
 }
 
-footer input::placeholder {
-    color: #444;
-}
-
-footer button {
+.search-area button {
+    padding: 12px 24px;
     background-color: #ff3333;
     color: white;
+    border: none;
+    border-radius: 8px;
     font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
-    padding: 10px 25px;
 }
 
-footer button:hover {
+.search-area button:hover {
     background-color: #cc0000;
+}
+
+.search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1rem;
+    margin-top: 20px;
+}
+
+.anime-card {
+    background: rgba(0,0,0,0.7);
+    border-radius: 12px;
+    padding: 10px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.anime-card:hover {
+    transform: scale(1.02);
+}
+
+.anime-card img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.anime-card h4 {
+    margin: 8px 0;
+    font-size: 1rem;
+}
+
+/* ========== FOOTER ========== */
+footer {
+    background-color: #111;
+    padding: 3rem 2rem 1.5rem;
+    margin-top: 4rem;
+    border-top: 1px solid #333;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 3rem;
+    margin-bottom: 2rem;
+}
+
+.footer-form {
+    flex: 1;
+    min-width: 250px;
+}
+
+.footer-form h3 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #ffcc00;
+}
+
+.footer-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.footer-form input {
+    padding: 0.8rem 1rem;
+    font-size: 1.4rem;
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #333;
+    color: #fff;
+}
+
+.footer-form button {
+    background-color: #ffcc00;
+    color: #111;
+    border: none;
+    padding: 0.8rem;
+    font-size: 1.6rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+.footer-right {
+    flex: 1;
+    min-width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.social-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social-links a {
+    color: #fff;
+    font-size: 2rem;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #ffcc00;
+    transform: translateY(-3px);
+}
+
+.anime-message {
+    background-color: rgba(255, 204, 0, 0.1);
+    border-left: 4px solid #ffcc00;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.anime-message p {
+    font-size: 1.4rem;
+    color: #ddd;
+    line-height: 1.5;
+}
+
+footer > p {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    border-top: 1px solid #333;
+    padding-top: 1.5rem;
+    margin-top: 1rem;
+}
+
+/* Back to Top button */
+footer button {
+    display: block;
+    margin: 1.5rem auto 0;
+    background-color: #ffcc00;
+    color: #111;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.4rem;
+    transition: all 0.3s ease;
+}
+footer button:hover {
+    background-color: #e6b800;
+    transform: translateY(-2px);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+    nav {
+        justify-content: center;
+        padding: 15px;
+    }
+    .card-images ul {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    }
+    .quotes-card {
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-images img {
+        width: 90px;
+        height: 90px;
+    }
+    .delete-member, .edit-member {
+        width: 22px;
+        height: 22px;
+        font-size: 10px;
+    }
+    .edit-member {
+        right: 30px;
+    }
 }
